@@ -4,11 +4,10 @@ namespace MediaLibrary.Models
 {
     public class Book : Media
     {
-        [Required]
-        public string Author { get; set; }
+        public virtual Artist Author { get; set; }
+
         public int PageCount { get; set; }
         public int ChapterCount { get; set; }
-        [Required]
-        public BookGenre Genre { get; set; }
+        public virtual BookGenre Genre { get; set; }
     }
 }

@@ -9,7 +9,8 @@ namespace MediaLibrary.Data
 {
     public class MediaContext : DbContext
     {
-        public MediaContext(DbContextOptions<MediaContext> options) : base(options)
+        public MediaContext(DbContextOptions<MediaContext> options) 
+            : base(options)
         {
         }
 
@@ -18,5 +19,15 @@ namespace MediaLibrary.Data
         public DbSet<Music> Music { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Series> Series { get; set; }
+        public DbSet<Artist> Artists { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Media>()
+            //.HasRequired(c => c.)
+            //.WithMany()
+            //.WillCascadeOnDelete(false);
+        }
     }
 }

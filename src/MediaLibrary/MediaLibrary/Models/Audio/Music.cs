@@ -5,10 +5,9 @@ namespace MediaLibrary.Models
 {
     public class Music : Media
     {
-        [Required]
-        public string Artist { get; set; }
-        [Required]
-        public MusicGenre Genre { get; set; }
+        public virtual Artist Artist { get; set; }
+
+        public virtual MusicGenre Genre { get; set; }
         public DateTime Length { get; set; }
     }
 }
