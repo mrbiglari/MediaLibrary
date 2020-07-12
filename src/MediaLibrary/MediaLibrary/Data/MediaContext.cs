@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediaLibrary.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,10 @@ namespace MediaLibrary.Data
         {
         }
 
-        public DbSet<MediaContext> Media { get; set; }
+        public DbSet<Media> Media { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Music> Music { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Series> Series { get; set; }
     }
 }

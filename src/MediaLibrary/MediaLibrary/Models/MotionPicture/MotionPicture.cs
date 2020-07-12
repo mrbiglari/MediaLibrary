@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MediaLibrary.Models
 {
@@ -8,6 +9,7 @@ namespace MediaLibrary.Models
         public string Director { get; set; }
         public IEnumerable<string> Cast { get; set; }
         public DateTime Length { get; set; }
+        [Required]
         public MovieGenre Genre { get; set; }
     }
 }

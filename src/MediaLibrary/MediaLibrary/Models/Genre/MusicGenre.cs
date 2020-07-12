@@ -1,6 +1,6 @@
 ﻿namespace MediaLibrary.Models
 {
-    public class AudioGenre : Genre
+    public class MusicGenre : Genre
     {
     }
 }
