@@ -20,7 +20,7 @@ namespace MediaLibrary.Controllers
         }
 
         //GET api/media/{id}
-        [HttpGet("{id}", Name = "GetCommandById")]
+        [HttpGet("{id}", Name = "GetMediaById")]
         public ActionResult<object> GetMediaById(int id)
         {
             return Ok();
@@ -28,14 +28,14 @@ namespace MediaLibrary.Controllers
 
         //POST api/media
         [HttpPost]
-        public ActionResult<object> CreateMedia(object commandCreateDto)
+        public ActionResult<object> CreateMedia(object mediaCreateDto)
         {
             return CreatedAtRoute(nameof(GetMediaById), new { Id = 0 }, new object());
         }
 
         //PUT api/media/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateMedia(int id, object commandUpdateDto)
+        public ActionResult UpdateMedia(int id, object mediaUpdateDto)
         {
             return NoContent();
         }
