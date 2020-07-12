@@ -12,55 +12,44 @@ namespace MediaLibrary.Controllers
     [ApiController]
     public class MediaController : ControllerBase
     {
-        //GET api/commands
+        //GET api/media
         [HttpGet]
-        public ActionResult<IEnumerable<object>> GetAllCommmands()
+        public ActionResult<IEnumerable<object>> GetAllMedia()
         {
             return Ok();
         }
 
-        //GET api/commands/{id}
+        //GET api/media/{id}
         [HttpGet("{id}", Name = "GetCommandById")]
-        public ActionResult<object> GetCommandById(int id)
+        public ActionResult<object> GetMediaById(int id)
         {
             return Ok();
         }
 
-        //POST api/commands
+        //POST api/media
         [HttpPost]
-        public ActionResult<object> CreateCommand(object commandCreateDto)
+        public ActionResult<object> CreateMedia(object commandCreateDto)
         {
-            return CreatedAtRoute(nameof(GetCommandById), new { Id = 0 }, new object());
+            return CreatedAtRoute(nameof(GetMediaById), new { Id = 0 }, new object());
         }
 
-        //PUT api/commands/{id}
+        //PUT api/media/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateCommand(int id, object commandUpdateDto)
+        public ActionResult UpdateMedia(int id, object commandUpdateDto)
         {
-            var commandModelFromRepo = _repository.GetCommandById(id);
-            if (commandModelFromRepo == null)
-            {
-                return NotFound();
-            }
-            _mapper.Map(commandUpdateDto, commandModelFromRepo);
-
-            _repository.UpdateCommand(commandModelFromRepo);
-
-            _repository.SaveChanges();
-
             return NoContent();
         }
 
-        //PATCH api/commands/{id}
+        //PATCH api/media/{id}
         [HttpPatch("{id}")]
-        public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<object> patchDoc)
+        public ActionResult PartialUpdateMedia(int id, JsonPatchDocument<object> patchDoc)
         {
             return NoContent();
         }
 
-        //DELETE api/commands/{id}
+        //DELETE api/media/{id}
         [HttpDelete("{id}")]
-        public ActionResult DeleteCommand(int id)
+        public ActionResult DeleteMedia(int id)
         { 
             return NoContent();
         }
