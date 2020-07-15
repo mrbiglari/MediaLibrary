@@ -1,15 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MediaLibrary.Models
 {
-    public class MotionPicture : Media
+
+    public enum MotionPictureType
     {
-        public string Director { get; set; }        
+        Movie,
+        Series
+    }
+
+    public class MotionPicture : IMotionPicture
+    {
+        public string Director { get; set; }
         public DateTime Length { get; set; }
         public virtual MovieGenre Genre { get; set; }
 
+        public MotionPictureType Type { get; set; }
         public virtual IEnumerable<Artist> Cast { get; set; }
+
+        public int EntityId { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string Title { get; set; }
     }
 }

@@ -44,6 +44,40 @@ namespace MediaLibrary.Migrations
                     b.ToTable("Artists");
                 });
 
+            modelBuilder.Entity("MediaLibrary.Models.Book", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ChapterCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PageCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("Book");
+                });
+
             modelBuilder.Entity("MediaLibrary.Models.BookGenre", b =>
                 {
                     b.Property<int>("Id")
@@ -70,9 +104,8 @@ namespace MediaLibrary.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EntityId")
+                        .HasColumnType("int");
 
                     b.Property<int>("MediaType")
                         .HasColumnType("int");
@@ -84,8 +117,35 @@ namespace MediaLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Media");
+                });
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Media");
+            modelBuilder.Entity("MediaLibrary.Models.Movie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Director")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Length")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("Movie");
                 });
 
             modelBuilder.Entity("MediaLibrary.Models.MovieGenre", b =>
@@ -104,6 +164,37 @@ namespace MediaLibrary.Migrations
                     b.ToTable("MovieGenre");
                 });
 
+            modelBuilder.Entity("MediaLibrary.Models.Music", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ArtistId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Length")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArtistId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("Music");
+                });
+
             modelBuilder.Entity("MediaLibrary.Models.MusicGenre", b =>
                 {
                     b.Property<int>("Id")
@@ -120,79 +211,20 @@ namespace MediaLibrary.Migrations
                     b.ToTable("MusicGenre");
                 });
 
-            modelBuilder.Entity("MediaLibrary.Models.Book", b =>
-                {
-                    b.HasBaseType("MediaLibrary.Models.Media");
-
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ChapterCount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PageCount")
-                        .HasColumnType("int");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("GenreId");
-
-                    b.HasDiscriminator().HasValue("Book");
-                });
-
-            modelBuilder.Entity("MediaLibrary.Models.Movie", b =>
-                {
-                    b.HasBaseType("MediaLibrary.Models.Media");
-
-                    b.Property<string>("Director")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("GenreId")
-                        .HasColumnName("Movie_GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Length")
-                        .HasColumnType("datetime2");
-
-                    b.HasIndex("GenreId");
-
-                    b.HasDiscriminator().HasValue("Movie");
-                });
-
-            modelBuilder.Entity("MediaLibrary.Models.Music", b =>
-                {
-                    b.HasBaseType("MediaLibrary.Models.Media");
-
-                    b.Property<int?>("ArtistId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("GenreId")
-                        .HasColumnName("Music_GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Length")
-                        .HasColumnName("Music_Length")
-                        .HasColumnType("datetime2");
-
-                    b.HasIndex("ArtistId");
-
-                    b.HasIndex("GenreId");
-
-                    b.HasDiscriminator().HasValue("Music");
-                });
-
             modelBuilder.Entity("MediaLibrary.Models.Series", b =>
                 {
-                    b.HasBaseType("MediaLibrary.Models.Media");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Director")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("GenreId")
-                        .HasColumnName("Series_GenreId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Length")
@@ -201,9 +233,14 @@ namespace MediaLibrary.Migrations
                     b.Property<int>("SeasonCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("GenreId");
 
-                    b.HasDiscriminator().HasValue("Series");
+                    b.ToTable("Series");
                 });
 
             modelBuilder.Entity("MediaLibrary.Models.Artist", b =>
