@@ -14,14 +14,9 @@ namespace MediaLibrary.Data
         {
             _context = context;
         }
-        public MediaRepository()
-        {
-
-        }
-
         public Media GetMedia(int id)
         {
-            return _context.Media.Single(x => x.Id == id);            
+            return _context.Media.Single(x => x.Id == id);
         }
         public bool SaveMedia(Media media)
         {

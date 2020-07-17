@@ -9,7 +9,7 @@ namespace MediaLibrary.Data
 {
     public class MediaContext : DbContext
     {
-        public MediaContext(DbContextOptions<MediaContext> options) 
+        public MediaContext(DbContextOptions<MediaContext> options)
             : base(options)
         {
         }

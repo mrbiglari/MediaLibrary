@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediaLibrary.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,17 @@ namespace MediaLibrary.Controllers
     [ApiController]
     public class MediaController : ControllerBase
     {
+        private readonly MediaRepository _mediaRepository;
+
+        public MediaController(MediaRepository mediaRepository)
+        {
+            _mediaRepository = mediaRepository;
+        }
         //GET api/media
         [HttpGet]
         public ActionResult<IEnumerable<object>> GetAllMedia()
         {
+            _mediaRepository.GetMedia(1);
             return Ok();
         }
 

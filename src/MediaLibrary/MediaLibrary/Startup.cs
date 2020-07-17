@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediaLibrary.Controllers;
 using MediaLibrary.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,9 @@ namespace MediaLibrary
         public void ConfigureServices(IServiceCollection services)
         {
             SetupEntityFrameworkContext(services);
+
+            services.AddTransient<MediaContext>();
+            services.AddTransient<MediaRepository>();
             services.AddControllers();
         }
 
