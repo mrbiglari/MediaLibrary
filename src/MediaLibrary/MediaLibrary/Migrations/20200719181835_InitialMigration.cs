@@ -13,6 +13,7 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -26,8 +27,8 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
+                    Title = table.Column<string>(nullable: false),
                     MediaType = table.Column<int>(nullable: false),
                     EntityId = table.Column<int>(nullable: false)
                 },
@@ -42,6 +43,7 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -55,6 +57,7 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -68,10 +71,10 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     Director = table.Column<string>(nullable: true),
                     GenreId = table.Column<int>(nullable: true),
                     Length = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -91,11 +94,11 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     SeasonCount = table.Column<int>(nullable: false),
                     Director = table.Column<string>(nullable: true),
                     GenreId = table.Column<int>(nullable: true),
                     Length = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -115,6 +118,7 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     FullName = table.Column<string>(nullable: true),
                     MovieId = table.Column<int>(nullable: true),
                     SeriesId = table.Column<int>(nullable: true)
@@ -142,11 +146,11 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     AuthorId = table.Column<int>(nullable: true),
                     PageCount = table.Column<int>(nullable: false),
                     ChapterCount = table.Column<int>(nullable: false),
                     GenreId = table.Column<int>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -172,10 +176,10 @@ namespace MediaLibrary.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     ArtistId = table.Column<int>(nullable: true),
                     GenreId = table.Column<int>(nullable: true),
                     Length = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

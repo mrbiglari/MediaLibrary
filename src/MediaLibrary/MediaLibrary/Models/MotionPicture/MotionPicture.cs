@@ -12,7 +12,7 @@ namespace MediaLibrary.Models
         Series
     }
 
-    public class MotionPicture : IMotionPicture
+    public class MotionPicture : EntityBase, IMotionPicture
     {
         public string Director { get; set; }
         public DateTime Length { get; set; }
@@ -22,9 +22,6 @@ namespace MediaLibrary.Models
         public virtual IEnumerable<Artist> Cast { get; set; }
 
         public int EntityId { get; set; }
-        [Key]
-        public int Id { get; set; }
-        public DateTime CreatedDate { get; set; }
         public string Title { get; set; }
     }
 }

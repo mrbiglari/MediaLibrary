@@ -8,15 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MediaLibrary.Models
 {
-    public class Media : IMedia
+    public class Media : EntityBase, IMedia
     {
-        [Key]
-        [Required]
-        public int Id { get; set; }
-        [Required]
+        [Required] 
         public string Title { get; set; }
-        [Required]
-        public DateTime CreatedDate { get; set; }
+
         [Required]
         public MediaType MediaType { get; set; }
 

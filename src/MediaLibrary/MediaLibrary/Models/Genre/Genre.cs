@@ -2,10 +2,8 @@
 
 namespace MediaLibrary.Models
 {
-    public class Genre
+    public class Genre : EntityBase
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }        
     }

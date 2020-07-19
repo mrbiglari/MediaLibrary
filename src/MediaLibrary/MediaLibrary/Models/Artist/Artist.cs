@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace MediaLibrary.Models
 {
-    public class Artist
+    public class Artist : EntityBase
     {
-        public int Id { get; set; }
         public string FullName { get; set; }
     }
 }

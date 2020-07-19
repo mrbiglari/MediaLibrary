@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediaLibrary.Controllers;
 using MediaLibrary.Data;
+using MediaLibrary.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +32,8 @@ namespace MediaLibrary
             SetupEntityFrameworkContext(services);
 
             services.AddTransient<MediaContext>();
-            services.AddTransient<MediaRepository>();
+            services.AddTransient<Repository<Media>>();
+
             services.AddControllers();
         }
 
