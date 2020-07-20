@@ -9,6 +9,6 @@ namespace MediaLibrary.Models
         [Required]
         public int Id { get; set; }
         [Required]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

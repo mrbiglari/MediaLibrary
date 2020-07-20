@@ -63,9 +63,6 @@ namespace MediaLibrary.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GenreId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PageCount")
                         .HasColumnType("int");
 
@@ -75,8 +72,6 @@ namespace MediaLibrary.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
-
-                    b.HasIndex("GenreId");
 
                     b.ToTable("Book");
                 });
@@ -97,7 +92,22 @@ namespace MediaLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BookGenre");
+                    b.ToTable("BookGenres");
+                });
+
+            modelBuilder.Entity("MediaLibrary.Models.BookGenreBook", b =>
+                {
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookGenreId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookId", "BookGenreId");
+
+                    b.HasIndex("BookGenreId");
+
+                    b.ToTable("BookGenreBook");
                 });
 
             modelBuilder.Entity("MediaLibrary.Models.Media", b =>
@@ -271,10 +281,21 @@ namespace MediaLibrary.Migrations
                     b.HasOne("MediaLibrary.Models.Artist", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
+                });
 
-                    b.HasOne("MediaLibrary.Models.BookGenre", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreId");
+            modelBuilder.Entity("MediaLibrary.Models.BookGenreBook", b =>
+                {
+                    b.HasOne("MediaLibrary.Models.BookGenre", "BookGenre")
+                        .WithMany("Books")
+                        .HasForeignKey("BookGenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MediaLibrary.Models.Book", "Book")
+                        .WithMany("Genre")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MediaLibrary.Models.Movie", b =>

@@ -8,7 +8,7 @@ namespace MediaLibrary.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BookGenre",
+                name: "BookGenres",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -18,7 +18,7 @@ namespace MediaLibrary.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookGenre", x => x.Id);
+                    table.PrimaryKey("PK_BookGenres", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -150,7 +150,6 @@ namespace MediaLibrary.Migrations
                     AuthorId = table.Column<int>(nullable: true),
                     PageCount = table.Column<int>(nullable: false),
                     ChapterCount = table.Column<int>(nullable: false),
-                    GenreId = table.Column<int>(nullable: true),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -160,12 +159,6 @@ namespace MediaLibrary.Migrations
                         name: "FK_Book_Artists_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Artists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Book_BookGenre_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "BookGenre",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -199,6 +192,30 @@ namespace MediaLibrary.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BookGenreBook",
+                columns: table => new
+                {
+                    BookId = table.Column<int>(nullable: false),
+                    BookGenreId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookGenreBook", x => new { x.BookId, x.BookGenreId });
+                    table.ForeignKey(
+                        name: "FK_BookGenreBook_BookGenres_BookGenreId",
+                        column: x => x.BookGenreId,
+                        principalTable: "BookGenres",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BookGenreBook_Book_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Book",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Artists_MovieId",
                 table: "Artists",
@@ -215,9 +232,9 @@ namespace MediaLibrary.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Book_GenreId",
-                table: "Book",
-                column: "GenreId");
+                name: "IX_BookGenreBook_BookGenreId",
+                table: "BookGenreBook",
+                column: "BookGenreId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movie_GenreId",
@@ -243,7 +260,7 @@ namespace MediaLibrary.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Book");
+                name: "BookGenreBook");
 
             migrationBuilder.DropTable(
                 name: "Media");
@@ -252,13 +269,16 @@ namespace MediaLibrary.Migrations
                 name: "Music");
 
             migrationBuilder.DropTable(
-                name: "BookGenre");
+                name: "BookGenres");
 
             migrationBuilder.DropTable(
-                name: "Artists");
+                name: "Book");
 
             migrationBuilder.DropTable(
                 name: "MusicGenre");
+
+            migrationBuilder.DropTable(
+                name: "Artists");
 
             migrationBuilder.DropTable(
                 name: "Movie");

@@ -21,6 +21,8 @@ namespace MediaLibrary.Data
         public DbSet<Series> Series { get; set; }
         public DbSet<Artist> Artists { get; set; }
 
+        public DbSet<BookGenre> BookGenres { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -28,6 +30,27 @@ namespace MediaLibrary.Data
             //.HasRequired(c => c.)
             //.WithMany()
             //.WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<Book>()
+            //   .HasMany<BookGenre>(s => s.Genre)
+            //   .WithMany(c => c.Books)
+            //   .Map(cs =>
+            //   {
+            //       cs.MapLeftKey("StudentRefId");
+            //       cs.MapRightKey("CourseRefId");
+            //       cs.ToTable("StudentCourse");
+            //   });
+
+            modelBuilder.Entity<BookGenreBook>()
+       .HasKey(bc => new { bc.BookId, bc.BookGenreId });
+            modelBuilder.Entity<BookGenreBook>()
+                .HasOne(bc => bc.Book)
+                .WithMany(b => b.Genre)
+                .HasForeignKey(bc => bc.BookId);
+            modelBuilder.Entity<BookGenreBook>()
+                .HasOne(bc => bc.BookGenre)
+                .WithMany(c => c.Books)
+                .HasForeignKey(bc => bc.BookGenreId);
         }
     }
 }
